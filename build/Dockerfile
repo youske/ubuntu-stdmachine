@@ -1,10 +1,10 @@
-# Lubuntu Linux with calibre
+# Lubuntu Linux standard image
 
 FROM ubuntu:16.04
 MAINTAINER youske miyakoshi <youske@gmail.com>
 
 LABEL com.stdmachine.description="ubuntu standard image" \
-      com.stdmachine.role="base image" \
+      com.stdmachine.role="ubuntu base" \
       com.stdmachine.os="ubuntu"
 
 #----- common -----
@@ -36,7 +36,7 @@ RUN COMMONPACKAGE='bash git bzip2 sudo wget ca-certificates ' && \
     # create admin user
     useradd -m -U -s /bin/bash admin && echo "admin ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     # remove build package
-    apt-get autoremove && rm -rf /tmp/*
+    apt-get autoremove && rm -rf /tmp/* /var/lib/apt/lists/*
 
 ENTRYPOINT ["switch","root=/bin/bash","--","switch","shell=gosu admin /bin/bash","--","/init"]
 CMD ["/bin/bash"]
