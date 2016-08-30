@@ -24,8 +24,8 @@ ADD "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64
 # apt-get install
 RUN COMMONPACKAGE='bash git bzip2 sudo wget ca-certificates ' && \
     LANGPACKAGE='locales language-pack-ja ' && \
-    DEBIAN_FRONTEND=nointeractive apt-get update && apt-get -y upgrade && \
-    DEBIAN_FRONTEND=nointeractive apt-get install -y ${COMMONPACKAGE} ${LANGPACKAGE} && \
+    DEBIAN_FRONTEND=nointeractive apt-get update && DEBIAN_FRONTEND=nointeractive apt-get -y -q upgrade && \
+    DEBIAN_FRONTEND=nointeractive apt-get install -y -q ${COMMONPACKAGE} ${LANGPACKAGE} && \
     update-locale LANG=${LANGUAGE:-ja_JP.UTF-8} && \
     # entrykit install
     tar zxvf /tmp/${ENTRYKIT_FILE} -C /usr/bin && chmod +x /usr/bin && /usr/bin/entrykit --symlink && \
