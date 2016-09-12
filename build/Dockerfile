@@ -22,7 +22,7 @@ ENV GOSU_VERSION=1.7
 ADD "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64" /tmp/
 
 # apt-get install
-RUN COMMONPACKAGE='bash git bzip2 sudo wget ca-certificates ' && \
+RUN COMMONPACKAGE='bash git bzip2 sudo wget ca-certificates software-properties-common python-software-properties ' && \
     LANGPACKAGE='locales language-pack-ja ' && \
     DEBIAN_FRONTEND=nointeractive apt-get update && DEBIAN_FRONTEND=nointeractive apt-get -y -q upgrade && \
     DEBIAN_FRONTEND=nointeractive apt-get install -y -q ${COMMONPACKAGE} ${LANGPACKAGE} && \
@@ -35,8 +35,9 @@ RUN COMMONPACKAGE='bash git bzip2 sudo wget ca-certificates ' && \
     tar zxf /tmp/s6-overlay-amd64.tar.gz -C / && \
     # create admin user
     useradd -m -U -s /bin/bash admin && echo "admin ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    mkdir -p /workdir && \
     # remove build package
-    apt-get autoremove && rm -rf /tmp/* /var/lib/apt/lists/*
+    apt-get autoremove -y && rm -rf /tmp/* /var/lib/apt/lists/*
 
 ENTRYPOINT ["switch","root=/bin/bash","--","switch","shell=gosu admin /bin/bash","--","/init"]
 CMD ["/bin/bash"]
