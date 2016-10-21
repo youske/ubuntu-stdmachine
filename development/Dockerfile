@@ -15,7 +15,7 @@ RUN echo "apt-get install" && \
     DEBIAN_FRONTEND=nointeractive apt-get update && DEBIAN_FRONTEND=nointeractive apt-get -y -q upgrade && \
     DEBIAN_FRONTEND=nointeractive apt-get install -y -q ${COMMONPACKAGE} ${LANGPACKAGE} && \
     LANGPACKAGE='locales language-pack-ja ' && \
-    DEVELOPMENTPACKAGE='vim tig build-essentials python-dev ' && \
+    DEVELOPMENTPACKAGE='vim tig tmux build-essential python-dev libncurses5-dev' && \
     DEBIAN_FRONTEND=nointeractive apt-get update && DEBIAN_FRONTEND=nointeractive apt-get -y -q upgrade && \
     DEBIAN_FRONTEND=nointeractive apt-get install -y -q ${COMMONPACKAGE} ${LANGPACKAGE} && \
     update-locale LANG=${LANGUAGE:-ja_JP.UTF-8} && \
