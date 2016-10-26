@@ -16,3 +16,11 @@ services:
       nofile:
         soft: 20000
         hard: 40000
+
+  dev-trusty:
+    build: trusty
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
