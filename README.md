@@ -1,7 +1,9 @@
-ubuntu 16.04  stdmachine
+ubuntu dockerimages  stdmachine
 ========================
 
-# about
+# 概要
+ubuntu dockerimages
+
 
 # user
 /home/admin
@@ -9,3 +11,15 @@ ubuntu 16.04  stdmachine
 # workdir
 
 # installed
+
+    docker pull youske/ubuntu-stdmachine:latest
+
+    docker pull youske/ubuntu-stdmachine:trusty
+
+    docker pull youske/ubuntu-stdmachine:xenial
+
+    # rootuser
+    docker run -it youske/ubuntu-stdmachine root
+
+    # adminuser
+    docker run -it youske/ubuntu-stdmachine shell
