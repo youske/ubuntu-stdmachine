@@ -8,7 +8,7 @@ LABEL com.stdmachine.description="ubuntu standard image" \
       com.stdmachine.os="ubuntu"
 
 # apt-get install
-RUN COMMONPACKAGE='bash git bzip2 sudo wget ca-certificates software-properties-common python-software-properties ' && \
+RUN COMMONPACKAGE='bash vim tmux git tig bzip2 sudo wget ca-certificates software-properties-common python-software-properties ' && \
     LANGPACKAGE='locales language-pack-ja ' && \
     DEBIAN_FRONTEND=nointeractive apt-get update && DEBIAN_FRONTEND=nointeractive apt-get -y -q upgrade && \
     DEBIAN_FRONTEND=nointeractive apt-get install -y -q ${COMMONPACKAGE} ${LANGPACKAGE} && \
