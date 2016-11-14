@@ -39,4 +39,4 @@ RUN echo "apt-get install" && \
     apt-get autoremove -y && rm -rf /tmp/* /var/lib/apt/lists/*
 
 ENTRYPOINT ["switch","root=/bin/bash","--","switch","shell=gosu admin /bin/bash","--","/init"]
-CMD ["/bin/bash"]
+CMD ["gosu","admin","/bin/bash"]
